@@ -1,0 +1,25 @@
+# goku distributed requests
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{pod_name}}
+  labels:
+    type: testing
+spec:
+  containers:
+  - name: toaster
+    image: example/toaster
+    resources:
+      requests:
+        memory: 128Mi
+      limits:
+        memory: 256Mi
+    env:
+    - name: URL
+      value: {{url}}
+  imagePullSecrets:
+  - name: regcred
+  restartPolicy: Never
